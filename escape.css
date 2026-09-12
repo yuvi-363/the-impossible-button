@@ -1,6 +1,9 @@
 /* The button now has smooth movement instead of only a hover nudge. */
 #hero { display: none !important; }
 .status { display: none !important; }
+#game-score { position: absolute; z-index: 5; top: 16px; left: 18px; margin: 0; color: white; font-family: "Space Mono", monospace; font-weight: 700; text-shadow: 2px 2px rgba(21, 32, 59, .3); transition: font-size .3s ease, transform .3s ease, color .3s ease; }
+.score-question { font-size: 12px; opacity: .9; }
+#game-score.score-active { color: var(--yellow); font-size: 24px; transform: rotate(-2deg) scale(1.08); }
 #sky { background: linear-gradient(160deg, #93ddff 0%, #4cb8f4 58%, #218bd1 100%); }
 #sky .moon { background: #ffe162; box-shadow: 0 0 0 13px rgba(255, 239, 146, .35); }
 #sky .city { background: linear-gradient(90deg, #3979a6 0 7%, transparent 7% 10%, #3979a6 10% 20%, transparent 20% 23%, #3979a6 23% 35%, transparent 35% 39%, #3979a6 39% 50%, transparent 50% 54%, #3979a6 54% 69%, transparent 69% 73%, #3979a6 73% 86%, transparent 86% 90%, #3979a6 90%); }
