@@ -3,7 +3,15 @@ const escapeButton = document.querySelector('#summon');
 let escapeMode = false;
 let mercyMode = false;
 let escapesSinceBreak = 0;
+let playerScore = 0;
+let scoreUnlocked = false;
 let audioContext;
+
+function updateGameScore() {
+  const display = document.querySelector('#game-score');
+  display.textContent = scoreUnlocked ? `score : ${playerScore}` : 'score?';
+  display.classList.toggle('score-active', scoreUnlocked);
+}
 
 function playButtonSound() {
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
@@ -100,6 +108,9 @@ escapeButton.onclick = event => {
     // This click is intentionally allowed: it does not move the button yet.
     mercyMode = false;
     escapesSinceBreak = 0;
+    scoreUnlocked = true;
+    playerScore++;
+    updateGameScore();
     escapeButton.querySelector('span').textContent = 'YOU GOT ME!';
     escapeButton.querySelector('small').textContent = '…for one second';
     toast('You got it! But it is running away again…');
@@ -120,6 +131,9 @@ document.querySelector('#reset').addEventListener('click', () => {
   escapeMode = false;
   mercyMode = false;
   escapesSinceBreak = 0;
+  playerScore = 0;
+  scoreUnlocked = false;
+  updateGameScore();
   clearTimeout(window.mercyTimer);
   escapeButton.style.left = '50%';
   escapeButton.style.top = '57%';
