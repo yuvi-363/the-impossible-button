@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Impossible Button</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="escape.css">
+</head><body><main class="app">
+<header><h1>Try to press <span>the button.</span></h1><button id="theme" aria-label="Toggle dark mode">☼</button></header>
+<section id="sky" aria-label="The Impossible Button game"><div class="moon"></div><div class="web w1"></div><div class="web w2"></div><div class="city"></div>
+<div class="status"><i></i><span id="status">Ready</span></div>
+<button id="summon"><b>✦</b><span>PRESS ME</span><small>it looks easy</small></button><p class="hint">The button is feeling unusually brave.</p>
+<div id="hero" class="hidden" role="button" tabindex="0" aria-label="Web-slinger. Click to pose."><div class="line"></div><div class="head"><i></i><b></b></div><div class="body"></div><div class="arm left"></div><div class="arm right"></div><div class="leg leftleg"></div><div class="leg rightleg"></div><label id="bubble">THWIP!</label></div>
+</section>
+<section class="score"><span id="calls" hidden>0</span><span id="webs" hidden>0</span><button id="reset">RESET</button></section>
+</main><div id="toast"></div><script src="script.js"></script><script src="escape.js"></script></body></html>

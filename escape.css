@@ -1,0 +1,8 @@
+/* The button now has smooth movement instead of only a hover nudge. */
+#hero { display: none !important; }
+.status { display: none !important; }
+header h1 { margin: 0 0 54px; font-size: clamp(42px, 7vw, 78px); line-height: .88; letter-spacing: -3px; text-decoration: underline 8px var(--yellow); text-underline-offset: 10px; }
+header h1 span { color: var(--red); }
+#summon { transition:left .28s cubic-bezier(.2,.8,.2,1), top .28s cubic-bezier(.2,.8,.2,1), transform .15s, box-shadow .12s; }
+#summon:hover { transform:translate(-50%,-50%) rotate(-5deg); }
+#summon:active { transform:translate(-50%,-50%) rotate(-2deg); }
