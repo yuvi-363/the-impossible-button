@@ -9,6 +9,6 @@ A tiny front-end game built with plain HTML, CSS, and JavaScript. Your goal is s
 - Dark mode and Reset give the player control over the experience.
 - Smooth CSS transitions, responsive layout, and a playful city-night visual style.
 
-## Run locally
+## Launching The Website
 
-No installation is needed. Open `index.html` in any modern browser.
+-Either use the GitHub pages link provided or download the repository and run it locally.
