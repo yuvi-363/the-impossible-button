@@ -3,6 +3,40 @@ const escapeButton = document.querySelector('#summon');
 let escapeMode = false;
 let mercyMode = false;
 let escapesSinceBreak = 0;
+let audioContext;
+
+function playButtonSound() {
+  const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  if (!AudioContextClass) return;
+
+  audioContext ??= new AudioContextClass();
+  if (audioContext.state === 'suspended') audioContext.resume();
+
+  const duration = 0.34;
+  const sound = audioContext.createBufferSource();
+  const noise = audioContext.createBuffer(1, audioContext.sampleRate * duration, audioContext.sampleRate);
+  const samples = noise.getChannelData(0);
+  const filter = audioContext.createBiquadFilter();
+  const volume = audioContext.createGain();
+  const now = audioContext.currentTime;
+
+  for (let index = 0; index < samples.length; index++) samples[index] = Math.random() * 2 - 1;
+  sound.buffer = noise;
+  filter.type = 'bandpass';
+  filter.Q.value = 1.1;
+  // Low → bright → low makes the noise feel like it passes by the listener.
+  filter.frequency.setValueAtTime(420, now);
+  filter.frequency.exponentialRampToValueAtTime(3200, now + 0.13);
+  filter.frequency.exponentialRampToValueAtTime(380, now + duration);
+  volume.gain.setValueAtTime(0.001, now);
+  volume.gain.exponentialRampToValueAtTime(0.16, now + 0.07);
+  volume.gain.exponentialRampToValueAtTime(0.001, now + duration);
+  sound.connect(filter);
+  filter.connect(volume);
+  volume.connect(audioContext.destination);
+  sound.start(now);
+  sound.stop(now + duration);
+}
 
 function moveEscapeButton() {
   const rect = sky.getBoundingClientRect();
@@ -55,6 +89,7 @@ function startEscapeGame() {
 
 escapeButton.onclick = event => {
   event.stopPropagation();
+  playButtonSound();
   if (!escapeMode) {
     startEscapeGame();
   } else if (mercyMode) {
