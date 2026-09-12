@@ -67,12 +67,16 @@ function moveEscapeButton() {
   hero.classList.remove('pose');
   void hero.offsetWidth;
   hero.classList.add('pose');
-  if (escapesSinceBreak === 10) {
-    mercyMode = true;
-    escapeButton.querySelector('span').textContent = 'ALRIGHT, ALRIGHT…';
-    escapeButton.querySelector('small').textContent = 'click me once';
-    toast('alright alright i will let you click me once');
-  }
+}
+
+function offerOneClick() {
+  mercyMode = true;
+  escapesSinceBreak++;
+  calls++;
+  score();
+  escapeButton.querySelector('span').textContent = 'ALRIGHT, ALRIGHT…';
+  escapeButton.querySelector('small').textContent = 'click me once';
+  toast('alright alright i will let you click me once');
 }
 
 function startEscapeGame() {
@@ -104,7 +108,10 @@ escapeButton.onclick = event => {
       escapeButton.querySelector('span').textContent = 'CATCH ME';
       escapeButton.querySelector('small').textContent = 'if you can';
       moveEscapeButton();
-    }, 650);
+    }, 1500);
+  } else if (escapesSinceBreak === 9) {
+    // The tenth press is the truce: the button stays put for one click.
+    offerOneClick();
   } else {
     moveEscapeButton();
   }
